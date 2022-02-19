@@ -9,12 +9,23 @@
         .log{
         }
         .lbl{
+           
         }
         .img{
-            height:25px;
-            width:25px;
+            height:20px;
+            width:20px;
+            margin-top:5px;
+        }
+        .td1{
+            cursor :pointer;
+            width:auto;
+        }
+         .td1:hover{
+            box-shadow: 5px 5px 3px grey;
+            border-radius: 25px;
         }
     </style>
+
 </head>
 <body>
     <form id="form1" runat="server">
@@ -38,28 +49,26 @@
             </asp:Panel>
             <br />
             <br />
-            <table align="center" cellpadding="10px" width="600px">
+            <table align="center" cellpadding="10px">
                 <tr>
                     <td>
                         <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="New Admission" Width="230px" />
                     </td>
-                    <td border="1">
-                        Currently Studying : 
+                    <td border="1" class="td1">
+                        <a href="current.aspx" style="color: #000000; text-decoration: none">Currently Studying :</a> 
                         <asp:Label ID="Label1" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <asp:Button ID="Button3" runat="server" Text="Register a Dropout" Width="230px" />
+                        <asp:Button ID="Button3" runat="server" Text="Register a Dropout" Width="230px" OnClick="Button3_Click" />
                     </td>
-                    <td border="1">
-                        Dropped out students : 
+                    <td border="1" class="td1">
+                       <a href="dropout.aspx" style="color: #000000; text-decoration: none">Dropped out students :</a>  
                         <asp:Label ID="Label2" runat="server"></asp:Label>
                     </td>
                 </tr>
             </table>
-           
-            
         </div>
     </form>
 </body>

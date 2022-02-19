@@ -63,7 +63,6 @@
                        <asp:TextBox ID="TextBox3" runat="server" AutoPostBack="True"></asp:TextBox>
                        <br />
                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="TextBox3" ErrorMessage="RegularExpressionValidator" ForeColor="Red" ValidationExpression="\d{12}" Display="Dynamic">*Must be 12 Digits</asp:RegularExpressionValidator>
-                       <br />
                        <asp:Label ID="Label4" runat="server" Enabled="False" Visible="False"></asp:Label>
                    </td>
                </tr>
@@ -103,7 +102,6 @@
                 </tr>
             </table>
         </div>
-        <asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
     </form>
 </body>
 </html>

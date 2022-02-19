@@ -11,6 +11,7 @@ using System.Text;
 public partial class Default2 : System.Web.UI.Page
 {
     string s, d, r, y,d1,s1,y1;
+    Mainclass m = new Mainclass();
     protected void Page_Load(object sender, EventArgs e)
     {
         if(!IsPostBack)
@@ -50,27 +51,27 @@ public partial class Default2 : System.Web.UI.Page
         DataTable ds = new DataTable("RCount");
         DataColumn dtColumn1 = new DataColumn();
         dtColumn1.DataType = typeof(string);
-        dtColumn1.ColumnName = "rod";
+        dtColumn1.ColumnName = "Reason";
         ds.Columns.Add(dtColumn1);
         DataColumn dtColumn = new DataColumn();
         dtColumn.DataType = typeof(Int32);
-        dtColumn.ColumnName = "rcount";
+        dtColumn.ColumnName = "No_of_Students";
         ds.Columns.Add(dtColumn);
-
         string[] rod = new string[7] { "FINANCIAL CONSTRAINTS", "DISENGAGEMENT", "POOR HEALTH", "FAMILY INFLUENCES", "GENDER DISCRIMINATION", "AVAILABILITY", "TRANSPORTATION PROBLEM" };
         for (int i = 0; i < 7; i++)
         {
             string rs = " and Reason='" + rod[i] + "'";
-            string q1 = "select Student_name from Student where IsD='Y' " + d1 + " " + s1 + "" + rs + " "+y1+" ";
-            DataTable d2 = GetData(q1);
+            string q1 = "select Student_name from Student where Status='Dropout' " + d1 + " " + s1 + "" + rs + " "+y1+" ";
+            DataTable d2 = m.GetData(q1);
             count = d2.Rows.Count;
             DataRow myDataRow1 = ds.NewRow();
-            myDataRow1["rod"] = rod[i];
-            myDataRow1["rcount"] = count;
+            myDataRow1["Reason"] = rod[i];
+            myDataRow1["No_of_Students"] = count;
             ds.Rows.Add(myDataRow1);
             count = 0;
         }
-
+        GridView1.DataSource = ds;
+        GridView1.DataBind();
         StringBuilder strScript = new StringBuilder();
         try
         {
@@ -85,7 +86,7 @@ public partial class Default2 : System.Web.UI.Page
 
             foreach (DataRow row in ds.Rows)
             {
-                strScript.Append("['" + row["rod"] + "'," + row["rcount"] + "],");
+                strScript.Append("['" + row["Reason"] + "'," + row["No_of_Students"] + "],");
             }
             strScript.Remove(strScript.Length - 1, 1);
             strScript.Append("]);");
@@ -107,8 +108,7 @@ public partial class Default2 : System.Web.UI.Page
         {
         }
         finally
-        {
-            ds.Dispose();
+        { 
             strScript.Clear();
         }
     }
@@ -142,7 +142,7 @@ public partial class Default2 : System.Web.UI.Page
         }
     }
 
-    private static DataTable GetData(string query)
+    /*private static DataTable GetData(string query)
     {
         SqlConnection cn = new SqlConnection();
         cn.ConnectionString = "Data Source=DESKTOP-0K9CDST\\SQLEXPRESS;Initial Catalog=Project;Integrated Security=True";
@@ -161,11 +161,15 @@ public partial class Default2 : System.Web.UI.Page
         }
         cn.Close();
         return dt;
-    }
+    }*/
 
     protected void Button2_Click(object sender, EventArgs e)
     {
+        Response.Redirect("Homepage.aspx");
+    }
 
-        Response.Redirect("Default.aspx");
+    protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
     }
 }

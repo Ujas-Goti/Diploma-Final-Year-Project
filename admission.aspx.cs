@@ -10,6 +10,7 @@ using System.Data;
 
 public partial class admission : System.Web.UI.Page
 {
+    Mainclass m = new Mainclass();
     string sid, sname, dname, typofs, bday;
     float standard, siid;
     long aadhar;
@@ -34,7 +35,7 @@ public partial class admission : System.Web.UI.Page
         string q2="select Aadhar, Status from Student where Aadhar='"+aadhar+"'";
         cn.ConnectionString = "Data Source=DESKTOP-0K9CDST\\SQLEXPRESS;Initial Catalog=Project;Integrated Security=True";
         cn.Open();
-        DataTable dt = GetData(q2);
+        DataTable dt = m.GetData(q2);
 
         if (dt.Rows.Count==0)
         {
@@ -47,14 +48,30 @@ public partial class admission : System.Web.UI.Page
                 Label4.Text = "*Aadhar already registered.";
                 Label4.Visible = true;
             }
+            else if(dt.Rows[0]["Status"].ToString() == "Dropout")
+            {
+                string query = "update Student set Status = 'Left' where Aadhar = '" + aadhar + "'";
+                runquery(query);
+            }
             else
             {
                 newadmission();
             }
         }
-        
     }
-    private static DataTable GetData(string query)
+    public void runquery(string q)
+    {
+        SqlConnection cn = new SqlConnection();
+        cn.ConnectionString = "Data Source=DESKTOP-0K9CDST\\SQLEXPRESS;Initial Catalog=Project;Integrated Security=True";
+        cn.Open();
+        SqlCommand cmd = new SqlCommand(q, cn);
+        cmd.ExecuteNonQuery();
+        cmd.Dispose();
+        cn.Close();
+        newadmission();
+    }
+
+    /*private static DataTable GetData(string query)
     {
         SqlConnection cn = new SqlConnection();
         cn.ConnectionString = "Data Source=DESKTOP-0K9CDST\\SQLEXPRESS;Initial Catalog=Project;Integrated Security=True";
@@ -73,7 +90,7 @@ public partial class admission : System.Web.UI.Page
         }
         cn.Close();
         return dt;
-    }
+    }*/
 
     public void newadmission()
     {

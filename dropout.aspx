@@ -1,6 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Dataview.aspx.cs" Inherits="Dataview" %>
-
-<%@ Register assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" namespace="System.Web.UI.DataVisualization.Charting" tagprefix="asp" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="dropout.aspx.cs" Inherits="dropout" %>
 
 <!DOCTYPE html>
 
@@ -10,11 +8,11 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <header>
-            <asp:Button ID="Button1" runat="server" Text="Back" Font-Names="Arial Narrow" OnClick="Button2_Click" />
-        </header>
+        <asp:Button ID="Button1" runat="server" Text="Back" OnClick="Button1_Click" />
         <br />
-            <asp:GridView ID="GridView1"  runat="server" CellPadding="4" Height="50px" Width="800px" ForeColor="Black" PageSize="20" HorizontalAlign="Center" ShowHeaderWhenEmpty="True" BackColor="#CCCCCC" BorderColor="#999999" BorderStyle="Solid" BorderWidth="3px" CellSpacing="2" Font-Size="XX-Small">
+        <p align="center"><asp:Label ID="Label1" runat="server" align="center" Text="Active Students  " Font-Bold="True" Font-Names="Book Antiqua" Font-Size="Large"></asp:Label></p>
+        <div align="center">
+             <asp:GridView ID="GridView1"  runat="server" CellPadding="4" Height="50px" Width="800px" ForeColor="Black" PageSize="20" HorizontalAlign="Center" ShowHeaderWhenEmpty="True" BackColor="#CCCCCC" BorderColor="#999999" BorderStyle="Solid" BorderWidth="3px" CellSpacing="2" Font-Size="XX-Small">
                 <EditRowStyle Font-Size="Smaller" />
                 <EmptyDataRowStyle Wrap="False" />
                 <FooterStyle BackColor="#CCCCCC" />
@@ -32,8 +30,7 @@
                     </div>
                 </EmptyDataTemplate>
             </asp:GridView>
-        <br />
+        </div>
     </form>
-
 </body>
 </html>

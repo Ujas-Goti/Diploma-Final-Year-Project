@@ -23,7 +23,7 @@
             cursor:pointer;
         }
         .auto-style1 {
-            width: 900px;
+            width: 700px;
             height: 450px;
             
         }
@@ -34,7 +34,7 @@
         <header>
             <asp:Button ID="Button2" runat="server" Text="Back" Font-Names="Arial Narrow" OnClick="Button2_Click" />
         </header>
-        <div>
+      
             <table cellpadding="10px" align="center">
                 <tr align="center">
                     <td colspan="3">
@@ -58,6 +58,7 @@
                             <asp:ListItem>2019</asp:ListItem>
                             <asp:ListItem>2020</asp:ListItem>
                             <asp:ListItem>2021</asp:ListItem>
+                            <asp:ListItem>2022</asp:ListItem>
                         </asp:DropDownList>
                     </td>
                 </tr>
@@ -69,7 +70,7 @@
                     </td>
                 </tr>
             </table>
-        </div>
+      
         <asp:Panel ID="Panel1" runat="server" HorizontalAlign="Center">
             <table align="center">
                 <tr>
@@ -77,6 +78,24 @@
                         <script type="text/javascript" src="https://www.google.com/jsapi"></script> 
         <asp:Literal ID="ltScripts" runat="server"></asp:Literal> 
         <div id="piechart_3d" class="auto-style1" align="center"></div>
+                    </td>
+                    <td>
+                        <asp:GridView ID="GridView1" runat="server" BackColor="#CCCCCC" BorderColor="#999999" BorderStyle="Solid" BorderWidth="3px" CellPadding="4" CellSpacing="2" ForeColor="Black" HorizontalAlign="Left" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
+                            <FooterStyle BackColor="#CCCCCC" />
+                            <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
+                            <PagerStyle BackColor="#CCCCCC" ForeColor="Black" HorizontalAlign="Left" />
+                            <RowStyle BackColor="White" HorizontalAlign="Left" />
+                            <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
+                            <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                            <SortedAscendingHeaderStyle BackColor="#808080" />
+                            <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                            <SortedDescendingHeaderStyle BackColor="#383838" />
+                             <EmptyDataTemplate>
+                                <div align="center">
+                                    No Records found.
+                                 </div>
+                            </EmptyDataTemplate>
+                        </asp:GridView>
                     </td>
                 </tr>
             </table>
