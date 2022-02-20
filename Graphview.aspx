@@ -23,8 +23,8 @@
             cursor:pointer;
         }
         .auto-style1 {
-            width: 700px;
-            height: 450px;
+            width: 500px;
+            height: 300px;
             
         }
         </style>
@@ -53,7 +53,7 @@
                     </td>
                     <td>
                         <asp:DropDownList ID="Year" runat="server" CssClass="dlist">
-                            <asp:ListItem>SELECT YEAR</asp:ListItem>
+                            <asp:ListItem>Select Year</asp:ListItem>
                             <asp:ListItem>2018</asp:ListItem>
                             <asp:ListItem>2019</asp:ListItem>
                             <asp:ListItem>2020</asp:ListItem>

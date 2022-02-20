@@ -10,7 +10,6 @@ using System.Data;
 
 public partial class dropout : System.Web.UI.Page
 {
-    Mainclass m = new Mainclass();
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -27,14 +26,14 @@ public partial class dropout : System.Web.UI.Page
         dataTable.Columns["Type_of_School"].ColumnName = "Type of School";
         dataTable.Columns["Student_name"].ColumnName = "Student name";
         dataTable.Columns["Year_of_Dropout"].ColumnName = "Year of Dropout";
-        GridView1.DataSource = m.AutoNumberedTable(dataTable);
+        GridView1.DataSource = AutoNumberedTable(dataTable);
         GridView1.DataBind();
         cn.Close();
     }
 
 
 
-   /* private DataTable AutoNumberedTable(DataTable SourceTable)
+   private DataTable AutoNumberedTable(DataTable SourceTable)
 
     {
 
@@ -49,7 +48,7 @@ public partial class dropout : System.Web.UI.Page
         ResultTable.Merge(SourceTable);
         return ResultTable;
 
-    }*/
+    }
 
     protected void Button1_Click(object sender, EventArgs e)
     {

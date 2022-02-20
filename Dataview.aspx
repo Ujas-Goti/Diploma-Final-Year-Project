@@ -20,7 +20,7 @@
                 <FooterStyle BackColor="#CCCCCC" />
                 <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" Font-Size="X-Small" HorizontalAlign="Center" />
                 <PagerStyle BackColor="#CCCCCC" ForeColor="Black" HorizontalAlign="Left" />
-                <RowStyle BackColor="White" Font-Size="X-Small" HorizontalAlign="Center" />
+                <RowStyle BackColor="White" Font-Size="X-Small"  HorizontalAlign="Left" />
                 <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
                 <SortedAscendingCellStyle BackColor="#F1F1F1" />
                 <SortedAscendingHeaderStyle BackColor="#808080" />

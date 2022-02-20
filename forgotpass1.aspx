@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="forgotpass.aspx.cs" Inherits="forgetpass" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="forgotpass1.aspx.cs" Inherits="forgotpass1" %>
 
 <!DOCTYPE html>
 
@@ -31,8 +31,7 @@
             New Password : <asp:TextBox ID="TextBox1" TextMode="Password" runat="server"></asp:TextBox>
             <br />
             <br />
-            Confirm Password : <asp:TextBox ID="TextBox2" TextMode="Password" runat="server"></asp:TextBox>
-            <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="TextBox1" ControlToValidate="TextBox2" ErrorMessage="CompareValidator" ForeColor="Red">*Passwords don&#39;t match</asp:CompareValidator>
+            Confirm Password : <asp:TextBox ID="TextBox2" TextMode="Password" runat="server"></asp:TextBox>&nbsp;<asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="TextBox1" ControlToValidate="TextBox2" ErrorMessage="CompareValidator" ForeColor="Red">*Passwords don&#39;t match</asp:CompareValidator>
             <br />
             <br />
             <asp:Button ID="Button2" runat="server" Text="Reset" OnClick="Button2_Click" />

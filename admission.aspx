@@ -73,7 +73,7 @@
                    <td>
                        <asp:TextBox ID="TextBox6" runat="server">---Select Date---</asp:TextBox>
                            <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-                           <ajaxToolkit:CalendarExtender ID="CalendarExtender1"  TargetControlID="TextBox6" Format="yyyy-MM-dd" runat="server" />
+                           <ajaxToolkit:CalendarExtender ID="CalendarExtender1"  TargetControlID="TextBox6" Format="dd/MM/yy" runat="server" />
                    </td>
                </tr>
                 <tr>

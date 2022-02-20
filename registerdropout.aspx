@@ -58,7 +58,7 @@
                                 <asp:ListItem>Select Reason</asp:ListItem>
                                 <asp:ListItem>Left</asp:ListItem>
                                 <asp:ListItem>Financial Constraints</asp:ListItem>
-                                <asp:ListItem>Disengagemet</asp:ListItem>
+                                <asp:ListItem>Disengagement</asp:ListItem>
                                 <asp:ListItem>Poor Health</asp:ListItem>
                                 <asp:ListItem>Family Influences</asp:ListItem>
                                 <asp:ListItem>Gender Discrimination</asp:ListItem>
@@ -78,6 +78,7 @@
                     <tr>
                         <td colspan="2" alignm="center">
                             <asp:Button ID="Button2" runat="server" Text="Register" OnClick="Button2_Click" />
+                            <asp:Label ID="Label6" runat="server" Text="Label"></asp:Label>
                         </td>
                     </tr>
                 </table>

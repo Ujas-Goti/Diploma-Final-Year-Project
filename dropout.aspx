@@ -10,7 +10,7 @@
     <form id="form1" runat="server">
         <asp:Button ID="Button1" runat="server" Text="Back" OnClick="Button1_Click" />
         <br />
-        <p align="center"><asp:Label ID="Label1" runat="server" align="center" Text="Active Students  " Font-Bold="True" Font-Names="Book Antiqua" Font-Size="Large"></asp:Label></p>
+        <p align="center"><asp:Label ID="Label1" runat="server" align="center" Text="Dropped Out Students" Font-Bold="True" Font-Names="Book Antiqua" Font-Size="Large"></asp:Label></p>
         <div align="center">
              <asp:GridView ID="GridView1"  runat="server" CellPadding="4" Height="50px" Width="800px" ForeColor="Black" PageSize="20" HorizontalAlign="Center" ShowHeaderWhenEmpty="True" BackColor="#CCCCCC" BorderColor="#999999" BorderStyle="Solid" BorderWidth="3px" CellSpacing="2" Font-Size="XX-Small">
                 <EditRowStyle Font-Size="Smaller" />

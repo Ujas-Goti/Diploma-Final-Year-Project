@@ -10,7 +10,6 @@ using System.Data;
 public partial class Default2 : System.Web.UI.Page
 {
     string sid, sname, dname, typofs;
-    Mainclass m = new Mainclass();
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["schoolid"]==null)
@@ -26,17 +25,17 @@ public partial class Default2 : System.Web.UI.Page
             typofs = Session["typos"].ToString();
 
             string q1 = "select Student_name from Student where School_name='" + sname + "' and Status='Active'";
-            DataTable dt = m.GetData(q1);
+            DataTable dt = GetData(q1);
             int c1 = dt.Rows.Count;
             Label1.Text = c1.ToString();
             string q2 = "select Student_name from Student where School_name='" + sname + "' and Status='Dropout'";
-            DataTable d2 = m.GetData(q2);
+            DataTable d2 = GetData(q2);
             int c2 = d2.Rows.Count;
             Label2.Text = c2.ToString();
         }
     }
 
-   /* private static DataTable GetData(string query)
+   private static DataTable GetData(string query)
     {
         SqlConnection cn = new SqlConnection();
         cn.ConnectionString = "Data Source=DESKTOP-0K9CDST\\SQLEXPRESS;Initial Catalog=Project;Integrated Security=True";
@@ -55,7 +54,7 @@ public partial class Default2 : System.Web.UI.Page
         }
         cn.Close();
         return dt;
-    }*/
+    }
 
     protected void Button1_Click(object sender, EventArgs e)
     {
@@ -71,5 +70,10 @@ public partial class Default2 : System.Web.UI.Page
     protected void Button3_Click(object sender, EventArgs e)
     {
         Response.Redirect("registerdropout.aspx");
+    }
+
+    protected void Button4_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("editstudent.aspx");
     }
 }

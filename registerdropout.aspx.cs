@@ -9,9 +9,7 @@ using System.Globalization;
 using System.Data;
 public partial class registerdropout : System.Web.UI.Page
 {
-    Mainclass m = new Mainclass();
-    long aadhar,yod;
-    string reason;
+    static long aadhar,yod;
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -24,7 +22,7 @@ public partial class registerdropout : System.Web.UI.Page
         string q2 = "select Aadhar,Student_name,Standard,Status from Student where Aadhar='" + aadhar + "'";
         cn.ConnectionString = "Data Source=DESKTOP-0K9CDST\\SQLEXPRESS;Initial Catalog=Project;Integrated Security=True";
         cn.Open();
-        DataTable dt = m.GetData(q2);
+        DataTable dt = GetData(q2);
 
         if (dt.Rows.Count == 0)
         {
@@ -50,7 +48,7 @@ public partial class registerdropout : System.Web.UI.Page
             }
         }
     }
-    /*private static DataTable GetData(string query)
+    private static DataTable GetData(string query)
     {
         SqlConnection cn = new SqlConnection();
         cn.ConnectionString = "Data Source=DESKTOP-0K9CDST\\SQLEXPRESS;Initial Catalog=Project;Integrated Security=True";
@@ -70,39 +68,18 @@ public partial class registerdropout : System.Web.UI.Page
         cn.Close();
         return dt;
         
-    }*/
+    }
 
     protected void Button2_Click(object sender, EventArgs e)
     {
-        string query = "update student set Status='Dropout',Reason='" + DropDownList1.SelectedValue.ToString() +"',Year_of_Dropout='"+yod+"' where Aadhar='"+aadhar+"'";
-        bool a =  m.runquery(query);
-        if (a==true)
-        {
-            Panel2.Visible = true;
-        }
-
-    }
-   /* public void runquery(string q)
-    {
+        string rs = DropDownList1.SelectedItem.ToString();
+        String query = "update Student set Status='Dropout',Reason='"+rs+"',Year_of_Dropout='"+yod+"' where Aadhar='" + aadhar + "'";
         SqlConnection cn = new SqlConnection();
         cn.ConnectionString = "Data Source=DESKTOP-0K9CDST\\SQLEXPRESS;Initial Catalog=Project;Integrated Security=True";
         cn.Open();
-        SqlCommand cmd = new SqlCommand(q, cn);
-        try
-        {
-            int i = cmd.ExecuteNonQuery();
-            if (i != 0)
-            {
-                Panel1.Visible = true;
-            }
-            else
-            {
-
-            }
-            cmd.Dispose();
-        }
-        catch
-        { }
+        SqlCommand cmd = new SqlCommand(query, cn);
+        cmd.ExecuteNonQuery();
         cn.Close();
-    }*/
+    }
+  
 }

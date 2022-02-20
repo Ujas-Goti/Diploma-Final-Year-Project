@@ -11,11 +11,10 @@ using System.Text;
 public partial class Default2 : System.Web.UI.Page
 {
     string s, d, r, y,d1,s1,y1;
-    Mainclass m = new Mainclass();
     protected void Page_Load(object sender, EventArgs e)
     {
         if(!IsPostBack)
-        School.Items.Add("SELECT SCHOOL");
+        School.Items.Add("Select School");
     }
 
     protected void Button1_Click(object sender, EventArgs e)
@@ -24,9 +23,9 @@ public partial class Default2 : System.Web.UI.Page
         s = School.SelectedValue.ToString();
         y = Year.SelectedValue.ToString();
 
-        string dc = "SELECT DISTRICT";
-        string sc = "SELECT SCHOOL";
-        string yc = "SELECT YEAR";
+        string dc = "Select District";
+        string sc = "Select School";
+        string yc = "Select Year";
 
         d1= " ";
         s1 = " ";
@@ -62,7 +61,7 @@ public partial class Default2 : System.Web.UI.Page
         {
             string rs = " and Reason='" + rod[i] + "'";
             string q1 = "select Student_name from Student where Status='Dropout' " + d1 + " " + s1 + "" + rs + " "+y1+" ";
-            DataTable d2 = m.GetData(q1);
+            DataTable d2 = GetData(q1);
             count = d2.Rows.Count;
             DataRow myDataRow1 = ds.NewRow();
             myDataRow1["Reason"] = rod[i];
@@ -122,10 +121,10 @@ public partial class Default2 : System.Web.UI.Page
         if (IsPostBack)
         {
             d = District.SelectedValue.ToString();
-            string dc = "SELECT DISTRICT";
+            string dc = "Select District";
             if (d != dc)
             {
-                School.Items.Remove("SELECT SCHOOL");
+                School.Items.Remove("Select School");
                 School.Enabled = true;
 
             }
@@ -142,7 +141,7 @@ public partial class Default2 : System.Web.UI.Page
         }
     }
 
-    /*private static DataTable GetData(string query)
+    private static DataTable GetData(string query)
     {
         SqlConnection cn = new SqlConnection();
         cn.ConnectionString = "Data Source=DESKTOP-0K9CDST\\SQLEXPRESS;Initial Catalog=Project;Integrated Security=True";
@@ -161,7 +160,7 @@ public partial class Default2 : System.Web.UI.Page
         }
         cn.Close();
         return dt;
-    }*/
+    }
 
     protected void Button2_Click(object sender, EventArgs e)
     {

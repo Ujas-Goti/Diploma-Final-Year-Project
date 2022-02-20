@@ -12,7 +12,7 @@ public partial class _Default : System.Web.UI.Page
     string s, d, r, y;
     protected void Page_Load(object sender, EventArgs e)
     {
-        School.Items.Add("SELECT SCHOOL");
+        School.Items.Add("Select School");
     }
 
     protected void Button1_Click(object sender, EventArgs e)
@@ -22,10 +22,10 @@ public partial class _Default : System.Web.UI.Page
         r = Reason.SelectedValue.ToString();
         y = Year.SelectedValue.ToString();
 
-        string dc = "SELECT DISTRICT";
-        string sc = "SELECT SCHOOL";
-        string rc = "SELECT REASON";
-        string yc = "SELECT YEAR";
+        string dc = "Select District";
+        string sc = "Select School";
+        string rc = "Select Reason";
+        string yc = "Select Year";
 
         Session["d"] = " ";
         Session["s"] = " ";
@@ -61,10 +61,10 @@ public partial class _Default : System.Web.UI.Page
         if (IsPostBack)
         {
             d = District.SelectedValue.ToString();
-            string dc = "SELECT DISTRICT";
+            string dc = "Select District";
             if (d != dc)
             {
-                School.Items.Remove("SELECT SCHOOL");
+                School.Items.Remove("Select School");
                 School.Enabled = true;
 
             }

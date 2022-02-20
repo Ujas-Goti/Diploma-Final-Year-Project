@@ -10,10 +10,9 @@ using System.Data;
 
 public partial class admission : System.Web.UI.Page
 {
-    Mainclass m = new Mainclass();
     string sid, sname, dname, typofs, bday;
-    float standard, siid;
-    long aadhar;
+    float standard;
+    long aadhar,siid;
     protected void Page_Load(object sender, EventArgs e)
     {
         sid = Session["schoolid"].ToString();
@@ -24,18 +23,17 @@ public partial class admission : System.Web.UI.Page
         Label2.Text = sname;
     }
 
-
     protected void Button2_Click(object sender, EventArgs e)
     {
         bday = TextBox6.Text;
-        siid = float.Parse(sid, CultureInfo.InvariantCulture.NumberFormat);
+        siid = long.Parse(sid);
         standard = float.Parse(DropDownList1.SelectedValue, CultureInfo.InvariantCulture.NumberFormat);
         aadhar = long.Parse(TextBox3.Text);
         SqlConnection cn = new SqlConnection();
         string q2="select Aadhar, Status from Student where Aadhar='"+aadhar+"'";
         cn.ConnectionString = "Data Source=DESKTOP-0K9CDST\\SQLEXPRESS;Initial Catalog=Project;Integrated Security=True";
         cn.Open();
-        DataTable dt = m.GetData(q2);
+        DataTable dt = GetData(q2);
 
         if (dt.Rows.Count==0)
         {
@@ -71,7 +69,7 @@ public partial class admission : System.Web.UI.Page
         newadmission();
     }
 
-    /*private static DataTable GetData(string query)
+    private static DataTable GetData(string query)
     {
         SqlConnection cn = new SqlConnection();
         cn.ConnectionString = "Data Source=DESKTOP-0K9CDST\\SQLEXPRESS;Initial Catalog=Project;Integrated Security=True";
@@ -90,7 +88,7 @@ public partial class admission : System.Web.UI.Page
         }
         cn.Close();
         return dt;
-    }*/
+    }
 
     public void newadmission()
     {

@@ -9,17 +9,17 @@ using System.Data.SqlClient;
 using System.Net.Mail;
 using System.Net;
 
-public partial class forgetpass : System.Web.UI.Page
+public partial class forgotpass1 : System.Web.UI.Page
 {
-    string email,sid;
+    string email, aid;
     static String code;
     protected void Page_Load(object sender, EventArgs e)
     {
         SqlConnection cn = new SqlConnection();
         cn.ConnectionString = "Data Source=DESKTOP-0K9CDST\\SQLEXPRESS;Initial Catalog=Project;Integrated Security=True";
         cn.Open();
-        sid = Session["schoolid"].ToString();
-        string sql = "select Email from School where School_id='" + sid + "'";
+        aid = Session["id"].ToString();
+        string sql = "select Email from Admin1 where ID='" + aid + "'";
         SqlCommand cmd = new SqlCommand(sql, cn);
         cmd = new SqlCommand(sql, cn);
         DataTable d1 = new DataTable();
@@ -39,11 +39,11 @@ public partial class forgetpass : System.Web.UI.Page
     {
         Random random = new Random();
         code = random.Next(100001, 999999).ToString();
-        String query = "update School set OTP = '"+code+"' where School_id = '"+sid+"' ";
+        String query = "update Admin1 set OTP = '" + code + "' where ID = '" + aid + "' ";
         SqlConnection cn = new SqlConnection();
         cn.ConnectionString = "Data Source=DESKTOP-0K9CDST\\SQLEXPRESS;Initial Catalog=Project;Integrated Security=True";
         cn.Open();
-        SqlCommand cmd1 = new SqlCommand(query,cn);
+        SqlCommand cmd1 = new SqlCommand(query, cn);
         cmd1.ExecuteNonQuery();
         cmd1.Dispose();
         sendcode();
@@ -62,7 +62,7 @@ public partial class forgetpass : System.Web.UI.Page
         smtp.Credentials = new System.Net.NetworkCredential("dropoutanalyzer@gmail.com", "schl1234");
         smtp.EnableSsl = true;
         MailMessage msg = new MailMessage();
-        msg.Subject = "Reset your password";
+        msg.Subject = "Reset your Admin password";
         msg.Body = "Verification Code : " + code + "\n\n\nThanks & Regards\nDanalyzer & Team";
         string toaddress = email;
         msg.To.Add(toaddress);
@@ -83,7 +83,7 @@ public partial class forgetpass : System.Web.UI.Page
         SqlConnection cn = new SqlConnection();
         cn.ConnectionString = "Data Source=DESKTOP-0K9CDST\\SQLEXPRESS;Initial Catalog=Project;Integrated Security=True";
         cn.Open();
-        String q1 = "update School set Password = '" + TextBox1.Text + "' where School_id = '" + sid + "' ";
+        String q1 = "update Admin1 set Password = '" + TextBox1.Text + "' where ID = '" + aid + "' ";
         SqlCommand cmd1 = new SqlCommand(q1, cn);
         cmd1.ExecuteNonQuery();
         cmd1.Dispose();
@@ -99,8 +99,8 @@ public partial class forgetpass : System.Web.UI.Page
         SqlConnection cn = new SqlConnection();
         cn.ConnectionString = "Data Source=DESKTOP-0K9CDST\\SQLEXPRESS;Initial Catalog=Project;Integrated Security=True";
         cn.Open();
-        string q1 = "select OTP from School where School_id='"+sid+"'";
-        SqlCommand cmd = new SqlCommand(q1,cn);
+        string q1 = "select OTP from Admin1 where ID='" +aid + "'";
+        SqlCommand cmd = new SqlCommand(q1, cn);
         DataTable d1 = new DataTable();
         SqlDataAdapter sda = new SqlDataAdapter();
         sda.SelectCommand = cmd;
@@ -113,7 +113,7 @@ public partial class forgetpass : System.Web.UI.Page
             Panel3.Visible = true;
             Panel2.Visible = false;
             Panel1.Visible = false;
-            q1 = "update School set OTP = NULL where School_id = '" + sid + "'";
+            q1 = "update Admin1 set OTP = NULL where ID = '" + aid + "'";
             SqlCommand cmd1 = new SqlCommand(q1, cn);
             cmd1.ExecuteNonQuery();
             cmd1.Dispose();
@@ -124,6 +124,6 @@ public partial class forgetpass : System.Web.UI.Page
 
     protected void Button4_Click(object sender, EventArgs e)
     {
-        Response.Redirect("Schoollogin.aspx");
+        Response.Redirect("adminlogin.aspx");
     }
 }

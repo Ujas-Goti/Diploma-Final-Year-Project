@@ -54,7 +54,7 @@
                     </td>
                     <td>
                         <asp:DropDownList ID="Year" runat="server" CssClass="dlist">
-                            <asp:ListItem>SELECT YEAR</asp:ListItem>
+                            <asp:ListItem>Select Year</asp:ListItem>
                             <asp:ListItem>2018</asp:ListItem>
                             <asp:ListItem>2019</asp:ListItem>
                             <asp:ListItem>2020</asp:ListItem>

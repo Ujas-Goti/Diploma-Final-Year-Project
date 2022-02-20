@@ -61,11 +61,19 @@
                 </tr>
                 <tr>
                     <td>
-                        <asp:Button ID="Button3" runat="server" Text="Register a Dropout" Width="230px" OnClick="Button3_Click" />
+                        <asp:Button ID="Button3" runat="server" Text="Register Dropout" Width="230px" OnClick="Button3_Click" />
                     </td>
                     <td border="1" class="td1">
                        <a href="dropout.aspx" style="color: #000000; text-decoration: none">Dropped out students :</a>  
                         <asp:Label ID="Label2" runat="server"></asp:Label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <asp:Button ID="Button4" runat="server" Width="230px" Text="Edit Data" OnClick="Button4_Click" />
+                    </td>
+                    <td>
+
                     </td>
                 </tr>
             </table>
