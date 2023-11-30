@@ -1,1 +1,2 @@
-*.SCSS linguist-detectable=false
+* linguist-vendored
+*.aspx linguist-vendored=false
