@@ -9,7 +9,7 @@ using System.Data;
 
 public partial class _Default : System.Web.UI.Page
 {
-    string s, d, r, y;
+    string s, d, r, y,caste;
     protected void Page_Load(object sender, EventArgs e)
     {
         School.Items.Add("Select School");
@@ -21,17 +21,17 @@ public partial class _Default : System.Web.UI.Page
         s = School.SelectedValue.ToString();
         r = Reason.SelectedValue.ToString();
         y = Year.SelectedValue.ToString();
-
+        caste = Caste.SelectedValue.ToString();
         string dc = "Select District";
         string sc = "Select School";
         string rc = "Select Reason";
         string yc = "Select Year";
-
+        string tc = "Select Caste";
         Session["d"] = " ";
         Session["s"] = " ";
         Session["r"] = " ";
         Session["y"] = " ";
-
+        Session["ct"] = " ";
         if (d != dc)
         {
             Session["d"] = " and District='" + d + "'";
@@ -48,7 +48,10 @@ public partial class _Default : System.Web.UI.Page
         {
             Session["y"] = " and Year_of_Dropout='" + y + "'";
         }
-
+        if (caste != tc)
+        {
+            Session["ct"] = " and Caste='" + caste + "'";
+        }
         Response.Redirect("Dataview.aspx");
     }
 
@@ -81,7 +84,7 @@ public partial class _Default : System.Web.UI.Page
         }
     }
 
-
+   
     protected void Button2_Click(object sender, EventArgs e)
     {
         Response.Redirect("Graphview.aspx");

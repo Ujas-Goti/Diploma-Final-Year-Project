@@ -26,7 +26,30 @@ public partial class registerdropout : System.Web.UI.Page
 
         if (dt.Rows.Count == 0)
         {
-            Label1.Text = "*Student does'nt exist.";
+            Label1.Text = "*Student doesn't exist.";
+        }
+        else if (dt.Rows.Count > 1)
+        {
+            
+            int i = dt.Rows.Count - 1;
+            if (dt.Rows[i]["Status"].ToString() == "Dropout")
+            {
+                Label1.Text = "*Student already Dropped out.";
+            }
+            else if (dt.Rows[i]["Status"].ToString() == "Left")
+            {
+                Label1.Text = "*Student already Left the school.";
+            }
+            else
+            {
+                Label1.Visible = false;
+                Panel1.Visible = true;
+                Label2.Text = dt.Rows[i]["Aadhar"].ToString();
+                Label3.Text = dt.Rows[i]["Student_name"].ToString();
+                Label4.Text = dt.Rows[i]["Standard"].ToString();
+                yod = DateTime.Now.Year;
+                Label5.Text = yod.ToString();
+            }
         }
         else {
             if (dt.Rows[0]["Status"].ToString() == "Dropout")
@@ -39,6 +62,7 @@ public partial class registerdropout : System.Web.UI.Page
             }
             else
             {
+                Label1.Visible = false;
                 Panel1.Visible = true;
                 Label2.Text = dt.Rows[0]["Aadhar"].ToString();
                 Label3.Text = dt.Rows[0]["Student_name"].ToString();
@@ -78,8 +102,17 @@ public partial class registerdropout : System.Web.UI.Page
         cn.ConnectionString = "Data Source=DESKTOP-0K9CDST\\SQLEXPRESS;Initial Catalog=Project;Integrated Security=True";
         cn.Open();
         SqlCommand cmd = new SqlCommand(query, cn);
-        cmd.ExecuteNonQuery();
+        int i = cmd.ExecuteNonQuery();
+        if (i != 0)
+        {
+            Panel2.Visible = true;
+        }
         cn.Close();
     }
-  
+
+
+    protected void Button3_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("School.aspx");
+    }
 }

@@ -9,7 +9,7 @@ using System.Data;
 
 public partial class Dataview : System.Web.UI.Page
 {
-
+    
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -22,14 +22,14 @@ public partial class Dataview : System.Web.UI.Page
             SqlConnection cn = new SqlConnection();
             cn.ConnectionString = "Data Source=DESKTOP-0K9CDST\\SQLEXPRESS;Initial Catalog=Project;Integrated Security=True";
             cn.Open();
-            string d, s, r, y, query;
+            string d, s, r, y,tc, query;
 
             d = Session["d"] as string;
             s = Session["s"] as string;
             r = Session["r"] as string;
             y = Session["y"] as string;
-
-            query = "select District,School_name,Type_of_School,Student_name,Gender,Birthdate,Standard,Reason,Year_of_Dropout from Student where Status='Dropout' " + d + " " + s + " " + r + " " + y + "";
+            tc = Session["ct"] as string;
+            query = "select District,School_name,Type_of_School,Student_name,Gender,Birthdate,Caste,Standard,Reason,Year_of_Dropout from Student where Status='Dropout' " + d + " " + s + " " + r + " " + y + " "+tc+"";
 
             SqlCommand cmd = new SqlCommand(query, cn);
             SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd);
@@ -44,18 +44,10 @@ public partial class Dataview : System.Web.UI.Page
             cn.Close();
         }
     }
-    protected void Button2_Click(object sender, EventArgs e)
-    {
-        Session.Remove("d");
-        Session.Remove("r");
-        Session.Remove("s");
-        Session.Remove("y");
-        Response.Redirect("Homepage.aspx");
-    }
-   private DataTable AutoNumberedTable(DataTable SourceTable)
+
+    public DataTable AutoNumberedTable(DataTable SourceTable)
 
     {
-
         DataTable ResultTable = new DataTable();
         DataColumn AutoNumberColumn = new DataColumn();
         AutoNumberColumn.ColumnName = "S.No";
@@ -68,4 +60,14 @@ public partial class Dataview : System.Web.UI.Page
         return ResultTable;
 
     }
+    protected void Button2_Click(object sender, EventArgs e)
+    {
+        Session.Remove("d");
+        Session.Remove("r");
+        Session.Remove("s");
+        Session.Remove("y");
+        Session.Remove("ct");
+        Response.Redirect("Homepage.aspx");
+    }
+   
 }

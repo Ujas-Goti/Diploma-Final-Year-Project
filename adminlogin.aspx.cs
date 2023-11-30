@@ -6,6 +6,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Data;
+using System.Security.Cryptography;
+using System.Text;
 
 public partial class adminlogin : System.Web.UI.Page
 {
@@ -35,7 +37,7 @@ public partial class adminlogin : System.Web.UI.Page
                 sda.SelectCommand = cmd;
                 sda.Fill(d1);
                 string pass = d1.Rows[0]["Password"].ToString();
-                if (pass == TextBox2.Text)
+                if (pass == GenerateMD5(TextBox2.Text))
                 {
                     Session["id"] = s;
                     Session["email"] = d1.Rows[0]["Email"].ToString();
@@ -66,5 +68,9 @@ public partial class adminlogin : System.Web.UI.Page
     {
         s = TextBox1.Text;
         Session["id"] = s;
+    }
+    public string GenerateMD5(string yourString)
+    {
+        return string.Join("", MD5.Create().ComputeHash(Encoding.ASCII.GetBytes(yourString)).Select(s => s.ToString("x2")));
     }
 }

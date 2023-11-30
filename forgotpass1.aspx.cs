@@ -8,6 +8,8 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Net.Mail;
 using System.Net;
+using System.Security.Cryptography;
+using System.Text;
 
 public partial class forgotpass1 : System.Web.UI.Page
 {
@@ -63,7 +65,7 @@ public partial class forgotpass1 : System.Web.UI.Page
         smtp.EnableSsl = true;
         MailMessage msg = new MailMessage();
         msg.Subject = "Reset your Admin password";
-        msg.Body = "Verification Code : " + code + "\n\n\nThanks & Regards\nDanalyzer & Team";
+        msg.Body = "Verification Code : " + code + "\n\nThanks & Regards\nDanalyzer & Team";
         string toaddress = email;
         msg.To.Add(toaddress);
         string fromaddress = "Danalyzer <dropoutanalyzer@gmail.com>";
@@ -83,7 +85,7 @@ public partial class forgotpass1 : System.Web.UI.Page
         SqlConnection cn = new SqlConnection();
         cn.ConnectionString = "Data Source=DESKTOP-0K9CDST\\SQLEXPRESS;Initial Catalog=Project;Integrated Security=True";
         cn.Open();
-        String q1 = "update Admin1 set Password = '" + TextBox1.Text + "' where ID = '" + aid + "' ";
+        String q1 = "update Admin1 set Password = '" + GenerateMD5(TextBox1.Text) + "' where ID = '" + aid + "' ";
         SqlCommand cmd1 = new SqlCommand(q1, cn);
         cmd1.ExecuteNonQuery();
         cmd1.Dispose();
@@ -118,6 +120,15 @@ public partial class forgotpass1 : System.Web.UI.Page
             cmd1.ExecuteNonQuery();
             cmd1.Dispose();
         }
+        else
+        {
+            Panel4.Visible = false;
+            Panel3.Visible = false;
+            Panel2.Visible = true;
+            Panel1.Visible = false;
+            Label3.Visible = true;
+            Label3.Text = "Invalid OTP!";
+        }
         d1.Dispose();
         cn.Close();
     }
@@ -125,5 +136,9 @@ public partial class forgotpass1 : System.Web.UI.Page
     protected void Button4_Click(object sender, EventArgs e)
     {
         Response.Redirect("adminlogin.aspx");
+    }
+    public string GenerateMD5(string yourString)
+    {
+        return string.Join("", MD5.Create().ComputeHash(Encoding.ASCII.GetBytes(yourString)).Select(s => s.ToString("x2")));
     }
 }

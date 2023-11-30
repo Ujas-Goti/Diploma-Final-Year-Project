@@ -10,7 +10,7 @@ using System.Globalization;
 
 public partial class editstudent : System.Web.UI.Page
 {
-    static string name, bday, status, reason, st1;
+    static string name, bday, status, reason, st1,caste;
     string upq;
     static long aadhar,yod;
     float std;
@@ -40,12 +40,15 @@ public partial class editstudent : System.Web.UI.Page
 
         if (dt.Rows.Count == 0)
         {
-            Label1.Text = "*Student does'nt exist.";
+            Label1.Visible = true;
+            Label1.Text = "*Student doesn't exist.";
             Panel2.Visible = false;
+            Panel1.Visible = true;
         }
         else
         {
             Label1.Visible = false;
+            Panel1.Visible = false;
             Label2.Text = dt.Rows[0]["District"].ToString();
             Label3.Text = dt.Rows[0]["School_name"].ToString();
             TextBox2.Text = dt.Rows[0]["Student_name"].ToString();
@@ -53,10 +56,13 @@ public partial class editstudent : System.Web.UI.Page
             Label4.Text = dt.Rows[0]["Aadhar"].ToString();
             TextBox6.Text = dt.Rows[0]["Birthdate"].ToString();
             TextBox3.Text = dt.Rows[0]["Standard"].ToString();
+            TextBox8.Text = dt.Rows[0]["Caste"].ToString();
             st1 = dt.Rows[0]["Status"].ToString();
             TextBox4.Text = st1;
             if (st1 != "Active")
             {
+                TextBox7.Enabled = true;
+                TextBox5.Enabled = true;
                 TextBox5.Text = dt.Rows[0]["Year_of_Dropout"].ToString();
                 TextBox7.Text = dt.Rows[0]["Reason"].ToString();
             }
@@ -68,32 +74,6 @@ public partial class editstudent : System.Web.UI.Page
         }
     }
 
-    protected void Button2_Click(object sender, EventArgs e)
-    {
-        
-       
-        bday = TextBox6.Text;
-        status = TextBox4.Text;
-        std = float.Parse(TextBox3.Text, CultureInfo.InvariantCulture.NumberFormat);
-       if (st1 != "Active")
-        {
-            yod = long.Parse(TextBox5.Text);
-            reason = TextBox7.Text;
-            upq = "update Student set Student_name='" + name + "',Birthdate='" + bday + "',Standard='" + std + "',Status='" + status + "',Reason='" + reason + "',Year_of_Dropout='" + yod + "' where Aadhar='" + aadhar + "' ";
-        }
-        else
-        {
-            upq = "update Student set Student_name='" + name + "',Birthdate='" + bday + "',Standard='" + std + "',Status='" + status + "' where Aadhar='" + aadhar + "' ";
-        }
-        SqlConnection cn = new SqlConnection();
-        cn.ConnectionString = "Data Source=DESKTOP-0K9CDST\\SQLEXPRESS;Initial Catalog=Project;Integrated Security=True";
-        cn.Open();
-        SqlCommand cmd = new SqlCommand(upq, cn);
-        cmd.ExecuteNonQuery();
-        Label6.Text = "Updated Successfully";
-        cmd.Dispose();
-        cn.Close();
-    }
     public DataTable AutoNumberedTable(DataTable SourceTable)
 
     {
@@ -109,10 +89,37 @@ public partial class editstudent : System.Web.UI.Page
         return ResultTable;
 
     }
-    public void runquery(string q)
+    protected void Button2_Click(object sender, EventArgs e)
     {
+        caste = TextBox8.Text;
+        name = TextBox2.Text;
+        bday = TextBox6.Text;
+        status = TextBox4.Text;
+        std = float.Parse(TextBox3.Text, CultureInfo.InvariantCulture.NumberFormat);
+       if (st1 != "Active")
+        {
+            yod = long.Parse(TextBox5.Text);
+            reason = TextBox7.Text;
+            upq = "update Student set Student_name='" + name + "',Birthdate='" + bday + "',Caste='" + caste + "',Standard='" + std + "',Status='" + status + "',Reason='" + reason + "',Year_of_Dropout='" + yod + "' where Aadhar='" + aadhar + "' ";
+        }
+        else
+        {
+            upq = "update Student set Student_name='" + name + "',Birthdate='" + bday + "',Caste='" + caste + "',Standard='" + std + "',Status='" + status + "' where Aadhar='" + aadhar + "' ";
+        }
+        SqlConnection cn = new SqlConnection();
+        cn.ConnectionString = "Data Source=DESKTOP-0K9CDST\\SQLEXPRESS;Initial Catalog=Project;Integrated Security=True";
+        cn.Open();
+        SqlCommand cmd = new SqlCommand(upq, cn);
+        int i = cmd.ExecuteNonQuery();
+        if(i!=0){
+            Panel3.Visible = true;
+        }
         
+        cmd.Dispose();
+        cn.Close();
     }
+    
+
     public DataTable GetData(string query)
     {
         SqlConnection cn = new SqlConnection();
@@ -132,6 +139,10 @@ public partial class editstudent : System.Web.UI.Page
         }
         cn.Close();
         return dt;
+    }
+    protected void Button3_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("School.aspx");
     }
     protected void TextBox2_TextChanged(object sender, EventArgs e)
     {

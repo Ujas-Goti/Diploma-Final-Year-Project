@@ -4,25 +4,49 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+    <link href="fontawesome-free-5.15.3-web/css/all.min.css" rel="stylesheet" />
+    <link href="css/stylesheet1.css" rel="stylesheet" />
     <title></title>
     <style>
-        
+        .d6 {
+            background-color: white;
+            height: fit-content;
+            width: 500px;
+            border-radius: 7px 7px 7px 7px;
+            box-shadow: 3px 3px 3px 3px;
+            margin-left: 0px;
+        }
     </style>
+
 </head>
-<body>
+<body class="body">
     <form id="form1" runat="server">
-        <asp:Panel runat="server" BackColor="#99FF66" ForeColor="#006600" ID="Panel2" Visible="False">
-    Registered successfully. &nbsp&nbsp<a href="School.aspx">Back to Homepage</a>
-</asp:Panel>
+         <nav><div class="navbar1">
+        <div align="center" class="lbl">
+            <a href="School.aspx" class="label">
+                Dropout Analyzer
+            </a>
+        </div>
+    </div></nav> 
+  
+        <br />
+        <br />
+
         <div align="center">
-            <b>Enter Aadhar : </b>
-            <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
-            &nbsp;<asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="TextBox1" Display="Dynamic" ErrorMessage="RegularExpressionValidator" ForeColor="Red" ValidationExpression="\d{12}">*Must be 12 Digits</asp:RegularExpressionValidator>
-&nbsp;<asp:Label ID="Label1" runat="server" ForeColor="Red"></asp:Label>
+            
+            <div class="d6"><br />
+                 <b>Enter Aadhar : </b>
+            <asp:TextBox ID="TextBox1" Height="25px" Width="200px" runat="server"></asp:TextBox>
+                <br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TextBox1" Display="Dynamic" ErrorMessage="RequiredFieldValidator" Font-Size="Small" ForeColor="Red">*Required Field</asp:RequiredFieldValidator>
+&nbsp;<asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="TextBox1" Display="Dynamic" ErrorMessage="RegularExpressionValidator" ForeColor="Red" ValidationExpression="\d{12}" Font-Size="Small">*Must be 12 Digits</asp:RegularExpressionValidator>
+&nbsp;<asp:Label ID="Label1" runat="server" ForeColor="Red" Font-Size="Small"></asp:Label>
             <br />
             <br />
-            <asp:Button ID="Button1" runat="server" Text="Verify" OnClick="Button1_Click" />
+            <asp:Button ID="Button1" CssClass="button" runat="server" Text="Verify" Height="35px" Width="70px" OnClick="Button1_Click" />
             <br />
+                <br />
             <asp:Panel ID="Panel1" runat="server" Visible="False">
                 <table align="center" cellpadding="10px">
                     <tr>
@@ -54,7 +78,7 @@
                             Reason
                         </td>
                         <td>
-                            <asp:DropDownList ID="DropDownList1" runat="server">
+                            <asp:DropDownList ID="DropDownList1"  Height="25px" runat="server" Width="208px">
                                 <asp:ListItem>Select Reason</asp:ListItem>
                                 <asp:ListItem>Left</asp:ListItem>
                                 <asp:ListItem>Financial Constraints</asp:ListItem>
@@ -76,14 +100,23 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="2" alignm="center">
-                            <asp:Button ID="Button2" runat="server" Text="Register" OnClick="Button2_Click" />
-                            <asp:Label ID="Label6" runat="server" Text="Label"></asp:Label>
+                        <td colspan="2" align="center">
+                            <asp:Button ID="Button2" CssClass="button" Height="35px" Width="87px" runat="server" Text="Register" OnClick="Button2_Click" />
+                            <br />
+                            <br />
+                            <asp:Panel runat="server" ID="Panel2" Visible="False" BackColor="#3399FF" ForeColor="White">
+                                Registered successfully.
+                                <br />
+                                <br />
+                                <asp:Button ID="Button3" CssClass="button" runat="server" Height="35px" Width="70px" Text="Back" ForeColor="White" OnClick="Button3_Click" />
+                                <br />
+                            </asp:Panel>
                         </td>
                     </tr>
                 </table>
             </asp:Panel>
         </div>
+            </div> 
     </form>
 </body>
 </html>

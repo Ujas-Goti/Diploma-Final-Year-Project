@@ -1,0 +1,160 @@
+﻿* {
+    margin-top: 0px;
+}
+
+.label {
+    font-family: Castellar;
+    color: white;
+    text-decoration: none;
+}
+.d1 {
+    background-color: white;
+    height: 350px;
+    width: fit-content;
+    border-radius: 7px 7px 7px 7px;
+    box-shadow: 3px 3px 3px 3px;
+}
+
+.i1 {
+    border-radius: 7px 7px 7px 7px;
+}
+
+.i2 {
+    margin-top: 5px;
+}
+
+.d2 {
+    background-color: white;
+    height: fit-content;
+    width: 350px;
+    border-radius: 7px 7px 7px 7px;
+    box-shadow: 3px 3px 3px 3px;
+}
+
+.d3 {
+    background-color: white;
+    height: 215px;
+    width: 1020px;
+    border-radius: 7px 7px 7px 7px;
+    box-shadow: 3px 3px 3px 3px;
+}
+
+.body {
+    background-image: url(http://localhost:50375/Images/2560x1440-blue-stained-glass-free-website-background-image.jpg);
+}
+
+.td {
+    height: fit-content;
+}
+
+.lbl {
+    margin-top: 14px;
+}
+
+.dlist {
+    width: 170px;
+    height: 35px;
+    border-radius: 7px;
+    border-style: solid;
+    cursor: pointer;
+}
+
+.button {
+    border-color: black;
+    background-color: transparent;
+    border-radius: 5px 5px 5px 5px;
+    color: #333;
+    border-width: thin;
+    
+}
+    .button:hover {
+        background-color: #333;
+        color: white;
+        border-radius: 5px 5px 5px 5px;
+        transition-duration: 0.3s;
+        cursor: pointer;
+    }
+
+.log {
+    border-color: red;
+    background-color: transparent;
+    border-radius: 5px 5px 5px 5px;
+    color: red;
+    border-width: thin;
+}
+    .log:hover {
+        border-color: red;
+        background-color: red;
+        border-radius: 5px 5px 5px 5px;
+        color: white;
+        transition-duration: 0.3s;
+        border-width: thin;
+        cursor: pointer;
+    }
+
+.navbar {
+    overflow: hidden;
+    background-color: #333;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+.navbar1 {
+    overflow: hidden;
+    background-color: #333;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    height:44px;
+}
+.dropdown {
+    float: left;
+    overflow: hidden;
+}
+
+    .dropdown .dropbtn {
+        font-size: 16px;
+        border: none;
+        outline: none;
+        color: white;
+        padding: 14px 16px;
+        background-color: inherit;
+        font-family: inherit;
+        margin: 0;
+    }
+
+    .navbar a:hover, .dropdown:hover .dropbtn {
+        background-color: cornflowerblue;
+    }
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 5px 5px 5px 5px;
+}
+
+    .dropdown-content a {
+        float: none;
+        color: white;
+        padding: 12px 14px;
+        font-size: 12px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+    }
+
+        .dropdown-content a:hover {
+            background-color: black;
+            border-radius: 5px 5px 5px 5px;
+        }
+
+.dropdown:hover .dropdown-content {
+    display: block;
+    border-radius: 5px 5px 5px 5px;
+}
+
+.p1 {
+    margin-top: 20px;
+}

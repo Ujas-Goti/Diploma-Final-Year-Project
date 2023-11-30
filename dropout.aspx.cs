@@ -10,11 +10,12 @@ using System.Data;
 
 public partial class dropout : System.Web.UI.Page
 {
+    Mainclass m;
     protected void Page_Load(object sender, EventArgs e)
     {
 
         string sname = Session["schoolname"].ToString();
-        string query = "select District,School_name,Type_of_School,Student_name,Gender,Birthdate,Standard,Status,Reason,Year_of_Dropout from Student where (Status='Dropout' or Status='Left') and School_name='" + sname + "'";
+        string query = "select District,School_name,Type_of_School,Student_name,Gender,Caste,Birthdate,Standard,Status,Reason,Year_of_Dropout from Student where (Status='Dropout' or Status='Left') and School_name='" + sname + "'";
         SqlConnection cn = new SqlConnection();
         cn.ConnectionString = "Data Source=DESKTOP-0K9CDST\\SQLEXPRESS;Initial Catalog=Project;Integrated Security=True";
         cn.Open();
@@ -31,12 +32,9 @@ public partial class dropout : System.Web.UI.Page
         cn.Close();
     }
 
-
-
-   private DataTable AutoNumberedTable(DataTable SourceTable)
+    public DataTable AutoNumberedTable(DataTable SourceTable)
 
     {
-
         DataTable ResultTable = new DataTable();
         DataColumn AutoNumberColumn = new DataColumn();
         AutoNumberColumn.ColumnName = "S.No";
@@ -48,10 +46,5 @@ public partial class dropout : System.Web.UI.Page
         ResultTable.Merge(SourceTable);
         return ResultTable;
 
-    }
-
-    protected void Button1_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("School.aspx");
     }
 }

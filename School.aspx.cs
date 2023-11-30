@@ -21,6 +21,7 @@ public partial class Default2 : System.Web.UI.Page
             sid = Session["schoolid"].ToString();
             Label3.Text = sid;
             sname = Session["schoolname"].ToString();
+            Label4.Text = sname;
             dname = Session["distname"].ToString();
             typofs = Session["typos"].ToString();
 

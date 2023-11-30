@@ -1,17 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
 using System.Net.Mail;
-using System.Net;
 
 public partial class forgetpass : System.Web.UI.Page
 {
-    string email,sid;
+    string email, sid;
     static String code;
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -39,11 +33,11 @@ public partial class forgetpass : System.Web.UI.Page
     {
         Random random = new Random();
         code = random.Next(100001, 999999).ToString();
-        String query = "update School set OTP = '"+code+"' where School_id = '"+sid+"' ";
+        String query = "update School set OTP = '" + code + "' where School_id = '" + sid + "' ";
         SqlConnection cn = new SqlConnection();
         cn.ConnectionString = "Data Source=DESKTOP-0K9CDST\\SQLEXPRESS;Initial Catalog=Project;Integrated Security=True";
         cn.Open();
-        SqlCommand cmd1 = new SqlCommand(query,cn);
+        SqlCommand cmd1 = new SqlCommand(query, cn);
         cmd1.ExecuteNonQuery();
         cmd1.Dispose();
         sendcode();
@@ -99,8 +93,8 @@ public partial class forgetpass : System.Web.UI.Page
         SqlConnection cn = new SqlConnection();
         cn.ConnectionString = "Data Source=DESKTOP-0K9CDST\\SQLEXPRESS;Initial Catalog=Project;Integrated Security=True";
         cn.Open();
-        string q1 = "select OTP from School where School_id='"+sid+"'";
-        SqlCommand cmd = new SqlCommand(q1,cn);
+        string q1 = "select OTP from School where School_id='" + sid + "'";
+        SqlCommand cmd = new SqlCommand(q1, cn);
         DataTable d1 = new DataTable();
         SqlDataAdapter sda = new SqlDataAdapter();
         sda.SelectCommand = cmd;
@@ -117,6 +111,15 @@ public partial class forgetpass : System.Web.UI.Page
             SqlCommand cmd1 = new SqlCommand(q1, cn);
             cmd1.ExecuteNonQuery();
             cmd1.Dispose();
+        }
+        else
+        {
+            Panel4.Visible = false;
+            Panel3.Visible = false;
+            Panel2.Visible = true;
+            Panel1.Visible = false;
+            Label3.Visible = true;
+            Label3.Text = "Invalid OTP!";
         }
         d1.Dispose();
         cn.Close();
